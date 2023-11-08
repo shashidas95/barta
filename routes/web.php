@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MultiStepFormController;
 
 /*
@@ -16,23 +17,25 @@ use App\Http\Controllers\MultiStepFormController;
 |
 */
 
-Route::get('/', function (Request $request) {
-    //    dd( Session::all());
-    session()->put('name', 'rashi');
-    // session(["team" => [
-    //     "s",
-    //     "r",
-    //     "h",
-    // ]]);
-    // session()->push('team', 'shash');
-    // session()->forget(['team', 'name']);
-    // session()->flush();
-    // echo session()->increment('visitors');
+// Route::get('/', function (Request $request) {
+//     //    dd( Session::all());
+//     // session()->put('name', 'rashi');
+//     // session(["team" => [
+//     //     "s",
+//     //     "r",
+//     //     "h",
+//     // ]]);
+//     // session()->push('team', 'shash');
+//     // session()->forget(['team', 'name']);
+//     // session()->flush();
+//     // echo session()->increment('visitors');
 
-    return view('welcome');
-});
-// Route::get('/multi-step-form', [MultiStepFormController::class, 'step1']);
-// Route::post('/multi-step-form', [MultiStepFormController::class, 'step1Post']);
-// Route::get('/multi-step-form/step2', [MultiStepFormController::class, 'step2']);
-// Route::post('/multi-step-form/step2', [MultiStepFormController::class, 'step2Post']);
-// Route::post('/multi-step-form/submit',  [MultiStepFormController::class, 'submit']);
+//     return view('register');
+// });
+
+// Route::get('/login', [LoginController::class, 'loginPage']);
+// Route::post('/login', [LoginController::class, 'login']);
+Route::get('/register', [LoginController::class, 'registerPage']);
+Route::post('/register', [LoginController::class, 'register']);
+// Route::get('/profile/edit', [LoginController::class, 'profilePage']);
+// Route::post('/profile', [LoginController::class, 'profile']);

@@ -19,7 +19,7 @@
 </head>
 
 <body>
-{{ 'Hello world' }}
+{{-- {{ 'Hello world' }} --}}
 {{-- {{ session('name') }}
 {{ dd(session()->all()) }} --}}
 {{-- {{ dd(session('team')) }} --}}
@@ -31,7 +31,7 @@
 {{-- {{ dd(session()->has('name')) }} --}}
 {{-- {{ dd(session()->missing('fax')) }} --}}
 {{-- {{ dd(session()->pull('name')) }} --}}
-{{ session()->increment('visitors', 5)}}
+{{-- {{ session()->increment('visitors', 5)}} --}}
 </body>
 
 </html>
