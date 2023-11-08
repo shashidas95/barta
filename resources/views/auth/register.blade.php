@@ -34,8 +34,8 @@
                 <div>
                     <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
                     <div class="mt-2">
-                        <input id="name" name="name" type="text" autocomplete="name" placeholder="Alp Arslan"
-                            required
+                        <input id="name" name="name" value="{{ old('name') }}" type="text"
+                            autocomplete="name" placeholder="Alp Arslan" required
                             class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 " />
                     </div>
                     <div class="text-red-500">
@@ -49,8 +49,8 @@
                 <div>
                     <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
                     <div class="mt-2">
-                        <input id="username" name="username" type="text" autocomplete="username"
-                            placeholder="alparslan1029" required
+                        <input id="username" name="username" type="text" value="{{ old('username') }}"
+                            autocomplete="username" placeholder="alparslan1029" required
                             class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 @error('username')!border-red-500
                             @enderror" />
                     </div>
@@ -66,8 +66,8 @@
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
                         address</label>
                     <div class="mt-2">
-                        <input id="email" name="email" type="email" autocomplete="email"
-                            placeholder="alp.arslan@mail.com" required
+                        <input id="email" name="email" type="email"
+                            value="{{ old('email') }}"autocomplete="email" placeholder="alp.arslan@mail.com" required
                             class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6  @error('email')!border-red-500
                             @enderror" />
                     </div>
@@ -82,8 +82,8 @@
                 <div>
                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                     <div class="mt-2">
-                        <input id="password" name="password" type="password" autocomplete="current-password"
-                            placeholder="••••••••" required
+                        <input id="password" name="password" type="password"
+                            autocomplete="current-password" placeholder="••••••••" required
                             class="block w-full rounded-md border-0 p-2 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
                     </div>
                     <div class="text-red-500">
