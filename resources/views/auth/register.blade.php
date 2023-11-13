@@ -32,30 +32,31 @@
                 @csrf
                 <!-- Name -->
                 <div>
-                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Full Name</label>
+                    <label for="fname" class="block text-sm font-medium leading-6 text-gray-900">First Name</label>
                     <div class="mt-2">
-                        <input id="name" name="name" value="{{ old('name') }}" type="text"
-                            autocomplete="name" placeholder="Alp Arslan" required
-                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 " />
+                        <input id="fname" name="fname" value="{{ old('fname') }}" type="text"
+                            autocomplete="fname" placeholder="Alp Arslan" required
+                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 @error('fname')!border-red-500
+                            @enderror " />
                     </div>
                     <div class="text-red-500">
-                        @error('name')
+                        @error('fname')
                             {{ $message }}
                         @enderror
                     </div>
                 </div>
 
-                <!-- Username -->
+                <!-- Last name -->
                 <div>
-                    <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Username</label>
+                    <label for="lname" class="block text-sm font-medium leading-6 text-gray-900">Last name</label>
                     <div class="mt-2">
-                        <input id="username" name="username" type="text" value="{{ old('username') }}"
-                            autocomplete="username" placeholder="alparslan1029" required
-                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 @error('username')!border-red-500
+                        <input id="lname" name="lname" type="text" value="{{ old('lname') }}"
+                            autocomplete="lname" placeholder="alparslan1029" required
+                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 @error('lname')!border-red-500
                             @enderror" />
                     </div>
                     <div class="text-red-500">
-                        @error('username')
+                        @error('lname')
                             {{ $message }}
                         @enderror
                     </div>
@@ -94,6 +95,21 @@
 
                 </div>
 
+                <!-- Bio -->
+                <div>
+                    <label for="bio" class="block text-sm font-medium leading-6 text-gray-900">Bio</label>
+                    <div class="mt-2">
+                        <input id="bio" name="bio" type="text" value="{{ old('bio') }}"
+                            autocomplete="bio" placeholder="alparslan1029" required
+                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 @error('bio')!border-red-500
+                            @enderror" />
+                    </div>
+                    <div class="text-red-500">
+                        @error('bio')
+                            {{ $message }}
+                        @enderror
+                    </div>
+                </div>
                 <div>
                     <button type="submit"
                         class="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegistrationRequest;
 
 class RegisterController extends Controller
@@ -15,18 +16,24 @@ class RegisterController extends Controller
     {
         return view('auth.register');
     }
+
     public function register(RegistrationRequest $request)
     {
+        try {
+            $validated = $request->validated();
 
-        $validated = $request->validated();
+            DB::table('users')->insert([
+                'fname' => $validated['fname'],
+                'lname' => $validated['lname'],
+                'email' => $validated['email'],
+                'bio' => $validated['bio'],
+                'password' => Hash::make($validated['password']),
+            ]);
 
-        $user = User::create([
-            'name' => $validated['name'],
-            'username' => $validated['username'],
-            'email' => $validated['email'],
-            'password' => bcrypt($validated['password']),
-        ]);
-
-        return redirect()->route('login');
+            return redirect()->route('login')->with('success', 'You are successfully registered.');
+        } catch (\Exception $e) {
+            // Handle the exception, perhaps log it
+            return back()->withInput()->withErrors(['error' => 'Registration failed. Please try again.']);
+        }
     }
 }

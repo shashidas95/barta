@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Support\Facades\DB;
+
+use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Request;
+
 
 class LoginController extends Controller
 {
@@ -14,15 +17,34 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-
     public function login(LoginRequest $request)
     {
-        $credentials = $request->only('email', 'password');
+        $validated = $request->validated();
+        $credentials = [
+            'email' => $validated['email'],
+            'password' => $validated['password']
+        ];
+        // dd($credentials);
 
+        // $credentials = collect($validated)->only('email', 'password')->all();
+
+        // dd($credentials);
         if (Auth::attempt($credentials)) {
-            return redirect()->route('profile')->with('message', 'Logged in successfully');
+            $request->session()->regenerate();
+            return redirect()->route('profile');
         }
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
 
-        return redirect()->route('login')->withErrors(['email' => 'Invalid email or password.'])->withInput();
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }
