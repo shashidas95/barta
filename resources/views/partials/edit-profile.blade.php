@@ -4,6 +4,7 @@
 
     <form action="{{ route('updateProfile', ['id' => Auth::user()->id]) }}" method="POST">
         @csrf
+
         <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
                 <h2 class="text-xl font-semibold leading-7 text-gray-900">
@@ -56,7 +57,7 @@
                                 name</label>
                             <div class="mt-2">
                                 <input type="text" name="fname" id="fname" autocomplete="given-name"
-                                    value="{{ Auth::user()->fname }}"
+                                    value="{{ old('fname', Auth::user()->fname) }}"
                                     class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
@@ -65,8 +66,8 @@
                             <label for="lname" class="block text-sm font-medium leading-6 text-gray-900">Last
                                 name</label>
                             <div class="mt-2">
-                                <input type="text" name="lname" id="lname" value="{{ Auth::user()->lname }}"
-                                    autocomplete="family-name"
+                                <input type="text" name="lname" id="lname"
+                                    value="{{ old('lname', Auth::user()->lname) }}" autocomplete="family-name"
                                     class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                             </div>
                         </div>
@@ -76,7 +77,7 @@
                                 address</label>
                             <div class="mt-2">
                                 <input id="email" name="email" type="email" autocomplete="email"
-                                    value="{{ Auth::user()->email }}"
+                                    value="{{ old('email', Auth::user()->email) }}"
                                     class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                             </div>
                         </div>

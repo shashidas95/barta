@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateProfileFormRequest;
 
 class ProfileController extends Controller
@@ -25,14 +26,15 @@ class ProfileController extends Controller
     {
         $validated = $request->validated();
         $user = Auth::user();
-        
 
-        DB::table("users")->where($id, $user->id)
+// dd($id=$user->id);
+        DB::table("users")->where('id', $user->id)
             ->update([
                 'fname' => $validated['fname'],
                 'lname' => $validated['lname'],
                 'email' => $validated['email'],
-                'password' => $validated['password'],
+                'password' =>
+            Hash::make($validated['password']),
                 'bio' => $validated['bio'],
             ]);
         return redirect()->route('profile')->with('success', 'Profile Updated successfully');
