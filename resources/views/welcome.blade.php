@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    {{ hello world }}
 {{-- {{ 'Hello world' }} --}}
 {{-- {{ session('name') }}
 {{ dd(session()->all()) }} --}}
