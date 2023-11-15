@@ -11,22 +11,33 @@ class PostController extends Controller
     public function showPosts()
     {
         $posts = DB::table('posts')->orderBy("created_at", "desc")->paginate(10);
-        return view("post", compact(""));
+        return view("post.posts");
     }
     public function create(Request $request)
     {
-        return view("post.create");
+        $users = DB::table("users")->orderBy("created_at", "desc")->get();
+        $posts = DB::table("posts")->orderBy("created_at", "desc")->get();
+
+        return view("post.create", compact("users", "posts"));
     }
     public function store(StorePostRequest $request)
     {
         $validated = $request->validated();
-        $validated = $request->safe()->only(['name', 'email']);
+      
+        $imageName = time() . '.' . $request->photo_path->extension();
+        $request->photo_path->move(public_path('images'), $imageName);
 
-        $post = DB::table("posts")->insert([
-        "user_id" => $validated["user_id"],
-        'content' => $validated['content'],
+        // $request->image->move(public_path('images'), $imageName);
+        // public/images/file.png
+        // $request->image->storeAs('images', $imageName);
+        // storage/app/images/file.png
+
+        DB::table("posts")->insert([
+            'user_id' => $validated["user_id"],
+            'photo_path' => $imageName,
+            'content' => $validated['content']
         ]);
-        return redirect('/posts');
+        return redirect()->route('post.show');
     }
     public function edit(Request $request)
     {
