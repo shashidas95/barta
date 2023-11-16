@@ -10,8 +10,18 @@ class PostController extends Controller
 {
     public function showPosts()
     {
+
+        // $users = DB::table('users')
+        //     ->join('users', 'users.id', '=', 'posts.user_id')
+        //     ->select('users.*', 'posts.*') // Adjust the columns you want to select
+        //     ->get();
+        $users = DB::table('users as u')
+            ->join('posts as p', 'u.id', '=', 'p.user_id')
+            ->select('u.*', 'p.*')
+            ->get();
+
         $posts = DB::table('posts')->orderBy("created_at", "desc")->paginate(10);
-        return view("post.posts", compact("posts"));
+        return view("post.posts", compact("posts", "users"));
     }
     public function create(Request $request)
     {
