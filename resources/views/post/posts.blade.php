@@ -90,7 +90,7 @@
                                 <!-- Content -->
                                 <div class="py-4 text-gray-700 font-normal">
                                     <img class="object-cover object-center w-full mb-8 lg:h-48 md:h-36 rounded-xl"
-                                        src="{{ asset('https://via.placeholder.com/150') }}" alt="blog">
+                                        src="{{ asset('./images/'. $post->photo_path ?? 'https://via.placeholder.com/150') }}" alt="blog">
 
                                     <p>
                                         🎉🥳 Turning 20 today! 🎂
