@@ -22,7 +22,7 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'=> 'required| exists:users',
+            'user_id'=> 'required',
             'content'=> 'required',
             'photo_path'=> 'nullable|image|mimes:png,jpg,jpeg,svg|max:2048',
             'views'=> 'integer|min:0',

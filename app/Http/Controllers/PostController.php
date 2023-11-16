@@ -11,7 +11,7 @@ class PostController extends Controller
     public function showPosts()
     {
         $posts = DB::table('posts')->orderBy("created_at", "desc")->paginate(10);
-        return view("post.posts");
+        return view("post.posts", compact("posts"));
     }
     public function create(Request $request)
     {
@@ -23,7 +23,7 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $validated = $request->validated();
-      
+
         $imageName = time() . '.' . $request->photo_path->extension();
         $request->photo_path->move(public_path('images'), $imageName);
 
@@ -31,13 +31,18 @@ class PostController extends Controller
         // public/images/file.png
         // $request->image->storeAs('images', $imageName);
         // storage/app/images/file.png
-
-        DB::table("posts")->insert([
-            'user_id' => $validated["user_id"],
-            'photo_path' => $imageName,
-            'content' => $validated['content']
-        ]);
-        return redirect()->route('post.show');
+        try {
+            DB::table("posts")->insert([
+                'user_id' => $validated["user_id"],
+                'photo_path' => $imageName,
+                'content' => $validated['content'],
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            return redirect()->route('post.show')->with('success', 'The post is created successfully');
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
     public function edit(Request $request)
     {

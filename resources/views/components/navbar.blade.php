@@ -21,10 +21,10 @@
             </div>
             <div class="hidden sm:ml-6 sm:flex gap-2 sm:items-center">
                 <!-- This Button Should Be Hidden on Mobile Devices -->
-                <button type="button"
+                <a type="button" href="{{ route('post.create') }}"
                     class="text-gray-900 hover:text-white border-2 border-gray-800 hover:bg-gray-900 focus:ring-2 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center hidden md:block">
                     Create Post
-                </button>
+                </a>
 
                 <button type="button"
                     class="rounded-full bg-white p-2 text-gray-800 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">
@@ -122,7 +122,7 @@
                 </div>
             </div>
             <div class="mt-3 space-y-1">
-                <a href="#"
+                <a href="{{ route('post.create') }}"
                     class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800">Create
                     New Post</a>
                 <a href="{{ route('profile') }}"
