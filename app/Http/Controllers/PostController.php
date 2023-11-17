@@ -20,7 +20,8 @@ class PostController extends Controller
             ->select('u.*', 'p.*')
             ->get();
 
-        $posts = DB::table('posts')->orderBy("created_at", "desc")->paginate(10);
+        $posts = DB::table('posts')->orderBy("created_at", "desc")->get();
+
         return view("post.posts", compact("posts", "users"));
     }
     public function create(Request $request)

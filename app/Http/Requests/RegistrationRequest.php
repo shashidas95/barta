@@ -24,6 +24,7 @@ class RegistrationRequest extends FormRequest
         return [
             'fname' => 'required|string|max:50',
             "lname" => "required|string|max:50",
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,svg|max:1024',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
             'bio' => 'required|string|min:8',

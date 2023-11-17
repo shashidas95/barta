@@ -22,9 +22,13 @@ class RegisterController extends Controller
         try {
             $validated = $request->validated();
 
+            $profileImage = time() . '.' . $request->image->extension();
+            // dd($request->image->getMimeType());
+            $request->image->move(storage_path('profile-images'), $profileImage);
             DB::table('users')->insert([
                 'fname' => $validated['fname'],
                 'lname' => $validated['lname'],
+                'image' => $profileImage,
                 'email' => $validated['email'],
                 'bio' => $validated['bio'],
                 'password' => Hash::make($validated['password']),
