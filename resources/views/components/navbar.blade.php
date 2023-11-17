@@ -68,7 +68,7 @@
                         <a href="{{ route('editProfile', ['id' => Auth::user()->id]) }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
                             tabindex="-1" id="user-menu-item-1">Edit Profile</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                     </div>
                 </div>
@@ -111,7 +111,8 @@
         <div class="border-t border-gray-200 pt-4 pb-3">
             <div class="flex items-center px-4">
                 <div class="flex-shrink-0">
-                    <img class="h-10 w-10 rounded-full" src="https://avatars.githubusercontent.com/u/831997"
+                    <img class="h-10 w-10 rounded-full"
+                        src="{{ asset('storage/profile-images/' . Auth::user()->image) }}"
                         alt="Ahmed Shamim Hasan Shaon" />
                 </div>
                 <div class="ml-3">

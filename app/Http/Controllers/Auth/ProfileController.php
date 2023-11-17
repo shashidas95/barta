@@ -13,33 +13,40 @@ class ProfileController extends Controller
 {
     public function profile()
     {
-       // $user = Auth::user();
+        // $user = Auth::user();
         //$email = $user->email;
-        return view("auth.profile" );
+        return view("auth.profile");
     }
-    public function editProfile(Request $request)
+    public function editProfile(Request $request, $userId)
     {
-        $user = Auth::user();
-        return view("partials.edit-profile", compact("user"));
+        // Fetch the user data based on a condition, for example, using the user's email
+        $user = DB::table('users')->where('id', '=', $userId)->first();
+
+        // Extract the user ID
+        $id = $user->id;
+
+        return view("auth.edit-profile", compact("id"));
     }
     public function updateProfile(UpdateProfileFormRequest $request, $id)
     {
         $validated = $request->validated();
         $user = Auth::user();
 
-// dd($id=$user->id);
+        // dd($id=$user->id);
         DB::table("users")->where('id', $user->id)
             ->update([
                 'fname' => $validated['fname'],
                 'lname' => $validated['lname'],
                 'email' => $validated['email'],
                 'password' =>
-            Hash::make($validated['password']),
+                Hash::make($validated['password']),
                 'bio' => $validated['bio'],
             ]);
         return redirect()->route('profile')->with('success', 'Profile Updated successfully');
     }
-    public function showProfile($id){
+    public function showProfile($id)
+    {
         dd($id);
     }
+   
 }
