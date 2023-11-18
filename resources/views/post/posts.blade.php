@@ -31,10 +31,10 @@
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center space-x-3">
                                             <!-- User Avatar -->
+
                                             <div class="flex-shrink-0">
                                                 <img class="h-10 w-10 rounded-full object-cover"
-                                                    src="{{ asset('storage/profile-images/' . $user->image) }}"
-                                                    alt="Al Nahian" />
+                                                    src="{{ asset('./profile-images/' . $user->image) }}" alt="Al Nahian" />
                                             </div>
                                             <!-- /User Avatar -->
 
@@ -77,7 +77,7 @@
                                                         <a href="{{ route('post.edit', ['id' => $user->id]) }}"
                                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                                             role="menuitem" tabindex="-1" id="user-menu-item-0">Edit</a>
-                                                        <a href="#"
+                                                        <a href="{{ route('post.delete', ['id' => $user->id]) }}"
                                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                                             role="menuitem" tabindex="-1" id="user-menu-item-1">Delete</a>
                                                     </div>
@@ -90,10 +90,11 @@
 
                                 <!-- Content -->
                                 <div class="py-4 text-gray-700 font-normal">
-                                    <img class="object-cover object-center w-full mb-8 lg:h-48 md:h-36 rounded-xl"
-                                        src="{{ asset('./images/' . $user->photo_path ?? 'https://via.placeholder.com/150') }}"
-                                        alt="blog">
-
+                                    <a href="{{ route('post.show') }}">
+                                        <img class="object-cover object-center w-full mb-8 lg:h-48 md:h-36 rounded-xl"
+                                            src="{{ asset('./images/' . $user->photo_path ?? 'https://via.placeholder.com/150') }}"
+                                            alt="blog">
+                                    </a>
                                     <p>
                                         🎉🥳 Turning 20 today! 🎂
                                         <br />
@@ -108,7 +109,7 @@
                                 <!-- Date Created & View Stat -->
                                 <div class="flex items-center gap-2 text-gray-500 text-xs my-2">
                                     <span class="">
-                                        {{ \Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</span>
+                                        {{ \Carbon\Carbon::parse($user->updated_at)->diffForHumans() }}</span>
                                     <span class="">•</span>
                                     <span>{{ $user->views }} views</span>
                                 </div>

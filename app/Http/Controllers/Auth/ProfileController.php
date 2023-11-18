@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateProfileFormRequest;
 
 class ProfileController extends Controller
@@ -31,12 +32,18 @@ class ProfileController extends Controller
     {
         $validated = $request->validated();
         $user = Auth::user();
-
+        if ($user->image) {
+            Storage::delete('/storage/app/profile-images/' . $user->image);
+        }
+        $profileImage = time() . '.' . $request->image->extension();
+        // dd($request->image->getMimeType());
+        $request->image->move(public_path('profile-images'), $profileImage);
         // dd($id=$user->id);
         DB::table("users")->where('id', $user->id)
             ->update([
                 'fname' => $validated['fname'],
                 'lname' => $validated['lname'],
+                'image' => $profileImage,
                 'email' => $validated['email'],
                 'password' =>
                 Hash::make($validated['password']),
@@ -44,9 +51,8 @@ class ProfileController extends Controller
             ]);
         return redirect()->route('profile')->with('success', 'Profile Updated successfully');
     }
-    public function showProfile($id)
+    public function showProfile()
     {
-        dd($id);
+
     }
-   
 }

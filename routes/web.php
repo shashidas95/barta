@@ -16,7 +16,7 @@ Route::get('/practise', function () {
 });
 Route::get('/', function () {
     $user = Auth::user();
-    // $email = $user->email;
+
     return view('layouts.app', compact('user'));
 });
 
@@ -35,12 +35,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit/{id}', [ProfileController::class, 'editProfile'])->name('editProfile');
     Route::post('/profile/update/{id}', [ProfileController::class, 'updateProfile'])->name('updateProfile');
 
-    Route::post('/posts/edit/{id}', [PostController::class, 'editPost'])->name('post.edit');
+    Route::get('/post/create', [PostController::class, 'createPost'])->name('post.create');
+    Route::post('/post', [PostController::class, 'storePost'])->name('post.store');
+    Route::get('/posts/edit/{id}', [PostController::class, 'editPost'])->name('post.edit');
     Route::post('/posts/update/{id}', [PostController::class, 'updatePost'])->name('post.update');
-    Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
-    Route::post('/post', [PostController::class, 'store'])->name('post.store');
+    Route::match(['get', 'post'], '/posts/delete/{id}', [PostController::class, 'deletePost'])->name('post.delete');
+
 });
 Route::get('/posts', [PostController::class, 'showPosts'])->name('post.show');
-
-
-
+Route::get('/post', [PostController::class, 'showPost'])->name('post.single-post');

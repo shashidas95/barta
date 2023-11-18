@@ -5,7 +5,7 @@
         @if (Auth::user()->id === $id)
             {{-- Only allow the author to edit their own profile --}}
 
-            <form action="{{ route('updateProfile', ['id' => Auth::user()->id]) }}" method="POST">
+            <form action="{{ route('updateProfile', ['id' => Auth::user()->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="space-y-12">
@@ -72,6 +72,27 @@
                                         <input type="text" name="lname" id="lname"
                                             value="{{ old('lname', Auth::user()->lname) }}" autocomplete="family-name"
                                             class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
+                                    </div>
+                                </div>
+                                <!-- image  -->
+                                <div class="sm:col-span-3">
+                                    <label for="image"
+                                        class="block text-sm font-medium leading-6 text-gray-900">Image</label>
+                                    <div class="mt-2">
+                                        <input id="image" name="image" type="file"
+                                            value="{{ old('image', Auth::user()->image) }}" autocomplete="image"
+                                            placeholder="alparslan1029" required
+                                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6 @error('image')!border-red-500
+                            @enderror " />
+                                        <div class="flex-shrink-0">
+                                            <img class="h-10 w-10 rounded-full object-cover"
+                                                src="{{ asset('./profile-images/' . Auth::user()->image) }}" alt="Al Nahian" />
+                                        </div>
+                                    </div>
+                                    <div class="text-red-500">
+                                        @error('image')
+                                            {{ $message }}
+                                        @enderror
                                     </div>
                                 </div>
 
