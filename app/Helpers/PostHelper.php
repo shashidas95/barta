@@ -6,5 +6,6 @@ use Illuminate\Support\Facades\DB;
 
 function incrementPostViews($postId)
 {
-   return DB::table('posts')->where('id', $postId)->increment('views');
+    // DB::table('posts')->where('id', $postId)->increment('views');
+   return DB::table('posts')->where('id', 2)->increment('views');
 }

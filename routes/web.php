@@ -34,11 +34,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::get('/profile/edit/{id}', [ProfileController::class, 'editProfile'])->name('editProfile');
     Route::post('/profile/update/{id}', [ProfileController::class, 'updateProfile'])->name('updateProfile');
-    
+
     Route::post('/posts/edit/{id}', [PostController::class, 'editPost'])->name('post.edit');
     Route::post('/posts/update/{id}', [PostController::class, 'updatePost'])->name('post.update');
+    Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+    Route::post('/post', [PostController::class, 'store'])->name('post.store');
 });
 Route::get('/posts', [PostController::class, 'showPosts'])->name('post.show');
 
-Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
-Route::post('/post', [PostController::class, 'store'])->name('post.store');
+
+

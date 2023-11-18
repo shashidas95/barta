@@ -19,20 +19,20 @@
 </head>
 
 <body>
-    {{ hello world }}
-{{-- {{ 'Hello world' }} --}}
-{{-- {{ session('name') }}
-{{ dd(session()->all()) }} --}}
-{{-- {{ dd(session('team')) }} --}}
-{{-- {{ dd(session('team.1')) }} --}}
-{{-- {{ dd(session()->get('team.1')) }} --}}
 
-{{-- {{ dd(session('theme', 'dark')) }} --}}
-{{-- {{ dd(session()->all()) }} --}}
-{{-- {{ dd(session()->has('name')) }} --}}
-{{-- {{ dd(session()->missing('fax')) }} --}}
-{{-- {{ dd(session()->pull('name')) }} --}}
-{{-- {{ session()->increment('visitors', 5)}} --}}
+    {{-- {{ 'Hello world' }} --}}
+    {{-- {{ session('name') }}
+{{ dd(session()->all()) }} --}}
+    {{-- {{ dd(session('team')) }} --}}
+    {{-- {{ dd(session('team.1')) }} --}}
+    {{-- {{ dd(session()->get('team.1')) }} --}}
+
+    {{-- {{ dd(session('theme', 'dark')) }} --}}
+    {{-- {{ dd(session()->all()) }} --}}
+    {{-- {{ dd(session()->has('name')) }} --}}
+    {{-- {{ dd(session()->missing('fax')) }} --}}
+    {{-- {{ dd(session()->pull('name')) }} --}}
+    {{-- {{ session()->increment('visitors', 5)}} --}}
 </body>
 
 </html>

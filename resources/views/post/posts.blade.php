@@ -33,7 +33,7 @@
                                             <!-- User Avatar -->
                                             <div class="flex-shrink-0">
                                                 <img class="h-10 w-10 rounded-full object-cover"
-                                                    src="{{ asset('storage/profile-images/'.$user->image) }}" alt="Al Nahian" />
+                                                    src="{{ asset('storage/profile-images/' . $user->image) }}" alt="Al Nahian" />
                                             </div>
                                             <!-- /User Avatar -->
 

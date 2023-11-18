@@ -24,7 +24,7 @@ class RegisterController extends Controller
 
             $profileImage = time() . '.' . $request->image->extension();
             // dd($request->image->getMimeType());
-            $request->image->move(storage_path('profile-images'), $profileImage);
+            $request->image->move(storage_path('app/profile-images'), $profileImage);
             DB::table('users')->insert([
                 'fname' => $validated['fname'],
                 'lname' => $validated['lname'],
